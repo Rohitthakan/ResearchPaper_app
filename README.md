@@ -38,21 +38,25 @@ cd ResearchPapers_app
 3. Set Up a Virtual Environment (recommended):
 
 python -m venv venv
+
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
 4. Install Dependencies:
 
 pip freeze > requirements.txt
+
 pip install -r requirements.txt
 
 5. Run Migrations:
 
 python manage.py makemigrations
+
 python manage.py migrate
 
 6. Run the Development Server:
 
 python manage.py runserver
+
 Open Your Browser: Navigate to http://127.0.0.1:8000/ to view the application.
 
 Usage:
