@@ -67,13 +67,3 @@ Click "Save" to add a paper to your saved papers list.
 
 Access the saved papers page to view all saved papers.
 Click "Remove" to delete papers from your collection.
-
-Project Structure:
-
-researchpapers/: Main Django application directory
-migrations/: Migration files
-static/: Static files (CSS)
-templates/: HTML templates
-views.py: Django views
-urls.py: URL routing
-models.py: Django models
