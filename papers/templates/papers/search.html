@@ -1,0 +1,37 @@
+{% extends 'papers/base.html' %}
+{% block home %}active{% endblock home %}
+{% block title %}ResearchVista | Home{% endblock %}
+
+{% block content %}
+    <h3>Search for Research Papers</h3>
+    <form method="get" action="{% url 'search_papers' %}">
+        <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="list-group mt-3">
+        {% if papers %}
+            {% for paper in papers %}
+                <div class="list-group-item">
+                    <h5>{{ paper.title }}</h5>
+                    <p><strong>Authors:</strong> {{ paper.authors }}</p>
+                    <p><strong>Year:</strong> {{ paper.year }} | <strong>Citations:</strong> {{ paper.citations }}</p>
+                    <form method="POST" action="{% url 'save_paper' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="title" value="{{ paper.title }}">
+                        <input type="hidden" name="authors" value="{{ paper.authors }}">
+                        <input type="hidden" name="year" value="{{ paper.year }}">
+                        <input type="hidden" name="citations" value="{{ paper.citations }}">
+                        <button class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% if query %}
+                <p>No research papers were found related to "{{ query }}".</p>
+            {% else %}
+                <p>Search for research papers using the search box above</p>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

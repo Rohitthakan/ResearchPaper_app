@@ -1,0 +1,24 @@
+{% extends 'papers/base.html' %}
+{% block saved_papers %}active{% endblock saved_papers %}
+{% block title %}ResearchVista | Saved Papers{% endblock %}
+{% block content %}
+    <h3>Saved Research Papers</h3>
+    <div class="list-group mt-3">
+        {% if saved_papers %}
+            {% for paper in saved_papers %}
+                <div class="list-group-item">
+                    <h5>{{ paper.title }}</h5>
+                    <p><strong>Authors:</strong> {{ paper.authors }}</p>
+                    <p><strong>Year:</strong> {{ paper.year }} | <strong>Citations:</strong> {{ paper.citations }}</p>
+                    <form method="POST" action="{% url 'remove_paper' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="title" value="{{ paper.title }}">
+                        <button class="btn btn-danger">Remove</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No saved papers.</p>
+        {% endif %}
+    </div>
+{% endblock %}
